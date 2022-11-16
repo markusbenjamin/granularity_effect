@@ -66,3 +66,4 @@ function windowResized() {
 function calculateSizes() {
   stimSize = round(min(width, height) * 0.75);
 }
+*//
