@@ -21,8 +21,8 @@ function initialize() {
   textSize(30);
   textAlign(CENTER, CENTER);
 
-  frameRate(60);
-  flickerFreq = 60;
+  setFrameRate(50);
+  flickerFreq = 30;
 
   rows = luv2rgbLookupTable.findRows('0.5', 'l');
   print(rows.length);
@@ -49,7 +49,6 @@ function draw() {
 
   fill(1);
   text(flickerFreq + '\t' + round(frameRate()), width * 0.5, height * 0.33);
-
 
   col1 = map(mouseX, 0, width, 0, 1);
   col2 = map(mouseY, 0, height, 0, 1);
