@@ -79,12 +79,19 @@ function setCols() {
 function drawLuminancePlane(x, y) {
   image(luminancePlane, x - lumPlaneSize / 2, y - lumPlaneSize / 2);
 
-  fill(1);
-  ellipse(
-    x + lumPlaneSize * 0.5 * labVals[activeColor][1],
-    y + lumPlaneSize * 0.5 * labVals[activeColor][2],
-    10, 10
-  )
+  strokeWeight(2);
+  for (var c = 0; c < 2; c++) {
+    if (c == activeColor) { stroke(1) } else { stroke(0.75) };
+    fill(rgbCols[c]);
+    ellipse(
+      x + lumPlaneSize * 0.5 * labVals[c][1],
+      y + lumPlaneSize * 0.5 * labVals[c][2],
+      20, 20
+    )
+  }
+  noStroke();
+  noFill();
+  strokeWeight(1);
 }
 
 function generateLuminancePlane(l, size) {
