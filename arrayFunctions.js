@@ -2,6 +2,10 @@ function sumArray(array) {
     return array.reduce((a, b) => a + b, 0);
 }
 
+function transpose(array){
+    return array[0].map((_, colIndex) => array.map(row => row[colIndex]));
+}
+
 function numFreqArray(array, num) {
     var flatArray = array.flat();
     return flatArray.filter(v => v === num).length / flatArray.length;
@@ -67,4 +71,8 @@ function csvToArray (csv) {
     return rows.map(function (row) {
     	return row.split(",");
     });
+}
+
+function roundTo(n,r){
+    return round(n/r)*r;
 }
