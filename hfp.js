@@ -24,8 +24,7 @@ function initialize() {
   textSize(30);
   textAlign(CENTER, CENTER);
 
-
-  labVals = [[0.2, 0, 0], [0.8, 0,  0]];
+  labVals = [[0.5, -0.35, 0.33], [0.5, 0.535, 0.382]];
   luminancePlanes = [
     generateLuminancePlane(labVals[0][0], lumPlaneSize),
     generateLuminancePlane(labVals[1][0], lumPlaneSize)
@@ -104,7 +103,7 @@ function drawHfp(withInfo) {
 
   if (withInfo) {
     fill(1);
-    text(flickerFreq + '\n' + round(frameRate()), width * 0.1, height * 0.9);
+    text('target frame rate: '+flickerFreq + '\nactual frame rate: ' + round(frameRate()), width * 0.1, height * 0.9);
     fill(
       colArrayToCol(LABtoRGB([transpose(labVals).map(x => (x[0] + x[1]) / 2)].map(x => [100 * x[0], 128 * x[1], 128 * x[2]])[0]))
     );
@@ -149,6 +148,14 @@ function setCols() {
 }
 
 function drawLuminancePlanes(x, y) {
+  stroke(1);
+  strokeWeight(3);
+  if (activeColor == 0) {
+    rect(x, y, luminancePlanes[0].width, luminancePlanes[0].height);
+  }
+  else {
+    rect(width - x, y, luminancePlanes[0].width, luminancePlanes[0].height)
+  }
   image(luminancePlanes[0], x, y);
   image(luminancePlanes[1], width - x, y);
 
