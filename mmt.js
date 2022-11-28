@@ -37,7 +37,7 @@ function initialize() {
   flickerFreq = 0;
 
   mmtFreq = 5;
-  mmtN = 6;
+  mmtN = 8;
   mmtStrokes = 4;
   setCols();
 }
