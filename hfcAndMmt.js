@@ -24,20 +24,21 @@ function initialize() {
   textSize(30);
   textAlign(CENTER, CENTER);
 
-  labVals = [[0.5, -0.35, 0.33], [0.5, 0.535, 0.382]];
+
+  labVals = [[0.475, -0.35, 0.33], [0.525, 0.535, 0.382]];
   luminancePlanes = [
     generateLuminancePlane(labVals[0][0], lumPlaneSize),
     generateLuminancePlane(labVals[1][0], lumPlaneSize)
   ];
-  activeColor = 1;
+  activeColor = 0;
 
 
   setFrameRate(60);
   flickerFreq = 0;
 
-  mmtFreq = 2;
-  mmtN = 8;
-  mmtStrokes = 6;
+  mmtFreq = 5;
+  mmtN = 6;
+  mmtStrokes = 4;
   setCols();
 }
 
@@ -48,8 +49,8 @@ function draw() {
 
   runLuminancePlanes(width * 0.1, width * 0.1, activeColor);
   drawLuminancePlanes(width * 0.1, width * 0.1);
-  drawHfp(true);
-  //drawMmt(true);
+  //drawHfp(true);
+  drawMmt(true);
 }
 
 function drawMmt(withInfo) {
