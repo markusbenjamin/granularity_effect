@@ -32,7 +32,6 @@ function initialize() {
   ];
   activeColor = 0;
 
-
   setFrameRate(60);
   flickerFreq = 0;
 
