@@ -25,19 +25,20 @@ function initialize() {
   textAlign(CENTER, CENTER);
 
 
-  labVals = [[0.475, -0.35, 0.33], [0.525, 0.535, 0.382]];
+  labVals = [[0.2, 0, 0], [0.8, 0,  0]];
   luminancePlanes = [
     generateLuminancePlane(labVals[0][0], lumPlaneSize),
     generateLuminancePlane(labVals[1][0], lumPlaneSize)
   ];
-  activeColor = 0;
+  activeColor = 1;
+
 
   setFrameRate(60);
   flickerFreq = 0;
 
-  mmtFreq = 5;
+  mmtFreq = 2;
   mmtN = 8;
-  mmtStrokes = 4;
+  mmtStrokes = 6;
   setCols();
 }
 
@@ -48,7 +49,7 @@ function draw() {
 
   runLuminancePlanes(width * 0.1, width * 0.1, activeColor);
   drawLuminancePlanes(width * 0.1, width * 0.1);
-  //drawHfp(true);
+  //drawHfc(true);
   drawMmt(true);
 }
 
@@ -92,7 +93,7 @@ function drawMmt(withInfo) {
   noStroke();
 }
 
-function drawHfp(withInfo) {
+function drawHfc(withInfo) {
   if (0.5 < round(0.5 + sin(PI * millis() * flickerFreq / 1000) / 2)) {
     fill(rgbCols[0], 1, 1);
   }
@@ -103,7 +104,7 @@ function drawHfp(withInfo) {
 
   if (withInfo) {
     fill(1);
-    text('target frame rate: '+flickerFreq + '\nactual frame rate: ' + round(frameRate()), width * 0.1, height * 0.9);
+    text(flickerFreq + '\n' + round(frameRate()), width * 0.1, height * 0.9);
     fill(
       colArrayToCol(LABtoRGB([transpose(labVals).map(x => (x[0] + x[1]) / 2)].map(x => [100 * x[0], 128 * x[1], 128 * x[2]])[0]))
     );
@@ -148,14 +149,6 @@ function setCols() {
 }
 
 function drawLuminancePlanes(x, y) {
-  stroke(1);
-  strokeWeight(3);
-  if (activeColor == 0) {
-    rect(x, y, luminancePlanes[0].width, luminancePlanes[0].height);
-  }
-  else {
-    rect(width - x, y, luminancePlanes[0].width, luminancePlanes[0].height)
-  }
   image(luminancePlanes[0], x, y);
   image(luminancePlanes[1], width - x, y);
 
@@ -254,18 +247,18 @@ function changeActiveColor(change, coord) {
 
 function keyPressed() {
   if (key === 's') {
-    changeActiveColor(0.02, 0);
+    changeActiveColor(0.01, 0);
   } else if (key === 'a') {
-    changeActiveColor(-0.02, 0);
+    changeActiveColor(-0.01, 0);
   } else if (key === ' ') {
     activeColor = (activeColor + 1) % 2;
   } else if (keyCode === UP_ARROW) {
-    changeActiveColor(-0.02, 2);
+    changeActiveColor(-0.01, 2);
   } else if (keyCode === DOWN_ARROW) {
-    changeActiveColor(0.02, 2);
+    changeActiveColor(0.01, 2);
   } else if (keyCode === LEFT_ARROW) {
-    changeActiveColor(-0.02, 1);
+    changeActiveColor(-0.01, 1);
   } else if (keyCode === RIGHT_ARROW) {
-    changeActiveColor(0.02, 1);
+    changeActiveColor(0.01, 1);
   }
 }
