@@ -142,8 +142,8 @@ function calculateSizes() {
 function setCols() {
   rgbCols = labVals.map(x => colArrayToCol(LABtoRGB([100 * x[0], 128 * x[1], 128 * x[2]])));
   mmtMixedRects = [
-    generateMixedRect(mmtAreaSize / mmtN, mmtAreaSize / mmtN, 0.05),
-    generateMixedRect(mmtAreaSize / mmtN, mmtAreaSize / mmtN, -0.05)
+    generateMixedRect(round(mmtAreaSize / mmtN), round(mmtAreaSize / mmtN), 0.05),
+    generateMixedRect(round(mmtAreaSize / mmtN), round(mmtAreaSize / mmtN), -0.05)
   ];
 }
 
